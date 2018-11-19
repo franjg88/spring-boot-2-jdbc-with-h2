@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Title</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous"/>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"/>
+
+<script type="text/javascript" charset="utf8"
+	src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+	
+	
+<!-- Para glyphicon -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous">
+	</script>
+	<h1>Tabla de estudiantes</h1>
+	<div class="container">
+	<div class="row">
+    <div class="col-sm-12">
+	<div class="table-responsive">
+		<table class="table table-hover">
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Name</th>
+							<th scope="col">Passport</th>
+						</tr>
+						<th:block th:each="student: ${estudiantes}">
+							<tr>
+								<td th:text="${student.id}"></td>
+								<td th:text="${student.name}"></td>
+								<td th:text="${student.passportNumber}"></td>
+								<td style="text-align: center;">
+									<form action="#" th:action="@{/findAll}" method="post">
+										<input type="hidden" name="to_do" value="form2" />
+										<input type="hidden" name="id" th:value="${student.id}" />
+<!-- 										<div class="form-group"> -->
+<!-- 											<p> -->
+<!-- 												<label for="nameStudent">Id:</label> <input name="id" -->
+<!-- 													id="id" type="button" value="${student.id}" class="form-control" /> -->
+<!-- 											</p> -->
+<!-- 										</div> -->
+										<div>
+											<div class="btn-group">
+<!-- 												<input type="submit" name="eliminar" value="Eliminar" -->
+<!-- 													class="btn btn-primary btn-lg mr-2 btn-danger" /> -->
+													<button type="submit" class="btn btn-default btn-lg">
+  														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+  													</button>
+											</div>
+										</div>
+									</form>
+								</td>
+
+							</tr>
+						</th:block>
+		</table>
+	</div>
+	</div>	
+	</div>
+	</div>
+	<div class="container">
+	<div class="row">
+    <div class="col-sm-4">
+	<form action="#" th:action="@{/findAll}" th:object="${student}"
+		method="post">
+		<input type="hidden" name="to_do" value="form1" />
+		<p>
+			Id: <input type="text" th:field="*{id}" />
+		</p>
+		<p>
+			Name: <input type="text" th:field="*{name}" />
+		</p>
+		<p>
+			Passport: <input type="text" th:field="*{passportNumber}" />
+		</p>
+		<p>
+			<input type="submit" value="Crear" class="btn btn-primary btn-lg mr-2"/> <input type="reset"
+				value="Reset" class="btn btn-primary btn-lg mr-2"/>
+		</p>
+	</form>
+	</div>
+	<div class="col-sm-4">
+	<form action="#" th:action="@{/findAll}" th:object="${student}"
+		method="post">
+		<input type="hidden" name="to_do" value="form4" />
+		<p>
+			Id: <input type="text" th:field="*{id}" />
+		</p>
+		<p>
+			Name: <input type="text" th:field="*{name}" />
+		</p>
+		<p>
+			Passport: <input type="text" th:field="*{passportNumber}" />
+		</p>
+		<p>
+			<input type="submit" value="Modificar" class="btn btn-primary btn-lg mr-2"/> <input type="reset"
+				value="Reset" class="btn btn-primary btn-lg mr-2"/>
+		</p>
+	</form>
+	</div>
+	<div class="col-sm-4">
+	<form action="#" th:action="@{/findAll}" method="post">
+		<input type="hidden" name="to_do" value="form2" />
+		<div class="form-group">
+			<p>
+				<label for="nameStudent">Id:</label> <input name="id" id="id"
+					type="text" class="form-control" />
+			</p>
+		</div>
+		<div>
+			<div class="btn-group">
+				<input type="submit" name="eliminar" value="Eliminar"
+					class="btn btn-primary btn-lg mr-2 btn-danger" /> 
+			</div>
+		</div>
+	</form>
+	<form action="#" th:action="@{/studentId}" th:object="${student}" method="post">
+		<input type="hidden" name="to_do" value="form3" />
+		<div class="form-group">
+			<p>
+				<label for="nameStudent">Id:</label> <input name="id" id="id"
+					type="text" class="form-control" />
+			</p>
+		</div>
+		<div>
+			<div class="btn-group">
+				<input type="submit" name="buscar" value="Buscar"
+					class="btn btn-primary btn-lg mr-2" /> 
+			</div>
+		</div>
+	</form>
+	</div>	
+	</div>
+	</div>
+</body>
+</html>
+
+
